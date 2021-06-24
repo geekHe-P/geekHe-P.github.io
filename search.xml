@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>关于kotlin &#39;不需要findViewById&#39;特性消失问题-Android Studio</title>
+      <link href="/2021/06/24/kotlin/"/>
+      <url>/2021/06/24/kotlin/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，在写安卓时kotlin的很多特性是非常爽的，但是就在颓废一年的我重新操起键盘敲代码时，突然发现，嗯？为什么不能直接找控件id了？特性取消了？以后还是要写繁琐的findViewById了？</p><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>于是我就百度了亿下，喔~原来是这样，在某个Android studio版本之后，软件就不自带kotlin的某个扩展插件了，只要我们加入这个插件就可以爽到飞天的使用kotlin了</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>就跟上文说的一样，加入插件就万事大吉喽</p><p>找到自己项目下的build.gradle，在plugins中加入以下代码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id &#x27;kotlin-android&#x27;</span><br><span class="line">id &#x27;kotlin-android-extensions&#x27;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> kotlin </tag>
+            
+            <tag> Android Stuidio </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
