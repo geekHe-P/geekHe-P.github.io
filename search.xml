@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>关于kotlin语法那些事（1）</title>
+      <link href="/2021/06/24/kotlin_about_1/"/>
+      <url>/2021/06/24/kotlin_about_1/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>如果你想得到当前类的名字，在kotlin中你可以这么写</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javaClass.simpleName</span><br></pre></td></tr></table></figure><p>那么得到当前类的名称有什么意义呢，有意义那是必然的，具体我也忘记了，，，，</p><blockquote><p>当你想让自己的对象为空时你可以试试这个<code>?</code></p></blockquote><p>这样或许可以避免一些空指针异常（我猜的</p><blockquote><p>但你需要类型转化时，在kotlin中你可以这么做</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val button = findViewById(R.id.send_button) as Button</span><br></pre></td></tr></table></figure><p>当然上一篇博客博客说过了，现在没有必要findViewById，即便要用findViewById，这样写才是明智的</p><p><code>val button=findViewById&lt;Button&gt;(R.id.send_button)</code></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> kotlin </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于kotlin &#39;不需要findViewById&#39;特性消失问题-Android Studio</title>
       <link href="/2021/06/24/kotlin/"/>
       <url>/2021/06/24/kotlin/</url>
