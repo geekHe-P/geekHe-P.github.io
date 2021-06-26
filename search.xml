@@ -4,11 +4,30 @@
   
     
     <entry>
-      <title>关于kotlin语法那些事（1）</title>
+      <title>关于kotlin那些事_2</title>
+      <link href="/2021/06/25/kotlin_about_2/"/>
+      <url>/2021/06/25/kotlin_about_2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Kotlin中-until和-的区别"><a href="#Kotlin中-until和-的区别" class="headerlink" title="Kotlin中 until和..的区别"></a>Kotlin中 until和..的区别</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.5</span>) &#123;   <span class="comment">// 等价于 for (int i = 1 ; i &lt;= 5 ; i++) &#123; print(i) &#125;</span></span><br><span class="line">  print(i)  <span class="comment">// 12345</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>..是左右闭区间</p><h2 id="until"><a href="#until" class="headerlink" title="until"></a>until</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span> until <span class="number">5</span>) &#123;  <span class="comment">// 等价于 for (int i = 1 ; i &lt; 5 ; i++) &#123; print(i) &#125;</span></span><br><span class="line">  print(i) <span class="comment">// 1234</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>until是左闭右开区间</p><h2 id="小白解析json文件时，遇到的坑"><a href="#小白解析json文件时，遇到的坑" class="headerlink" title="小白解析json文件时，遇到的坑"></a>小白解析json文件时，遇到的坑</h2><p>哦，我的上帝啊，原来解析的json中不能有subjects，我懂了</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> kotlin </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于kotlin那些事_1</title>
       <link href="/2021/06/24/kotlin_about_1/"/>
       <url>/2021/06/24/kotlin_about_1/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>如果你想得到当前类的名字，在kotlin中你可以这么写</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javaClass.simpleName</span><br></pre></td></tr></table></figure><p>那么得到当前类的名称有什么意义呢，有意义那是必然的，具体我也忘记了，，，，</p><blockquote><p>当你想让自己的对象为空时你可以试试这个<code>?</code></p></blockquote><p>这样或许可以避免一些空指针异常（我猜的</p><blockquote><p>但你需要类型转化时，在kotlin中你可以这么做</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val button = findViewById(R.id.send_button) as Button</span><br></pre></td></tr></table></figure><p>当然上一篇博客博客说过了，现在没有必要findViewById，即便要用findViewById，这样写才是明智的</p><p><code>val button=findViewById&lt;Button&gt;(R.id.send_button)</code></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="如果你想得到当前类的名字，在kotlin中你可以这么写"><a href="#如果你想得到当前类的名字，在kotlin中你可以这么写" class="headerlink" title="如果你想得到当前类的名字，在kotlin中你可以这么写"></a>如果你想得到当前类的名字，在kotlin中你可以这么写</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javaClass.simpleName</span><br></pre></td></tr></table></figure><p>那么得到当前类的名称有什么意义呢，有意义那是必然的，具体我也忘记了，，，，</p><h2 id="当你想让自己的对象为空时你可以试试这个"><a href="#当你想让自己的对象为空时你可以试试这个" class="headerlink" title="当你想让自己的对象为空时你可以试试这个?"></a>当你想让自己的对象为空时你可以试试这个<code>?</code></h2><p>这样或许可以避免一些空指针异常（我猜的</p><h2 id="当你需要类型转化时，在kotlin中你可以这么做"><a href="#当你需要类型转化时，在kotlin中你可以这么做" class="headerlink" title="当你需要类型转化时，在kotlin中你可以这么做"></a>当你需要类型转化时，在kotlin中你可以这么做</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button = findViewById(R.id.send_button) <span class="keyword">as</span> Button</span><br></pre></td></tr></table></figure><p>当然上一篇博客博客说过了，现在没有必要findViewById，即便要用findViewById，这样写才是明智的</p><p><code>val button=findViewById&lt;Button&gt;(R.id.send_button)</code></p>]]></content>
       
       
       
