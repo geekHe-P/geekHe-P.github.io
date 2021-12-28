@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>parallel为虚拟机设置代理 ubuntu</title>
+      <link href="/2021/12/28/parallel_proxy/"/>
+      <url>/2021/12/28/parallel_proxy/</url>
+      
+        <content type="html"><![CDATA[<h1 id="如何快速为parallel设置宿主机代理"><a href="#如何快速为parallel设置宿主机代理" class="headerlink" title="如何快速为parallel设置宿主机代理"></a>如何快速为parallel设置宿主机代理</h1><h3 id="查看ip"><a href="#查看ip" class="headerlink" title="查看ip"></a>查看ip</h3><p>在mac上在终端键入<code>ifconfig</code>查看联网ip地址</p><h3 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h3><p>在代理软件上开启<code>允许局域网连接</code>，查看<code>端口号</code></p><h3 id="parallel设置"><a href="#parallel设置" class="headerlink" title="parallel设置"></a>parallel设置</h3><p>在虚拟机上<code>网络设置</code>为<code>桥接网络</code>，并且在系统内设置代理</p><p><code>ip地址</code>为<code>宿主机ip</code>，<code>端口号</code>为<code>宿主机代理软件端口号</code></p><p>至此完成</p><blockquote><p>注意：宿主机ip可能变化，修改系统代理中的宿主机ip即可</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> parallel </tag>
+            
+            <tag> proxy </tag>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法题-最小路径和</title>
       <link href="/2021/09/19/minPathSum/"/>
       <url>/2021/09/19/minPathSum/</url>
