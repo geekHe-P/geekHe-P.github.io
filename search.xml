@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>test</title>
+      <link href="/2022/03/09/test/"/>
+      <url>/2022/03/09/test/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/cn/album/%E7%9B%97%E5%B0%86%E8%A1%8C/1578446787?i=1578446788"></iframe>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>parallel为虚拟机设置代理 ubuntu</title>
       <link href="/2021/12/28/parallel_proxy/"/>
       <url>/2021/12/28/parallel_proxy/</url>
