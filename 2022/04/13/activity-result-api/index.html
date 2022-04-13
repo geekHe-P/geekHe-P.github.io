@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ActivityResultApi | 🔨のblog</title><meta name="author" content="🔨"><meta name="copyright" content="🔨"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="替代startActivityForResult的官方解决方案–ActivityResultAPI 当我接触到startActivityForResult的时候，我发现它已经被官方弃用了，我在官方看到这样的一句话 虽然所有API级别的Activity类均提供底层 [startActivityForResult()](https:&#x2F;&#x2F;developer.android.com&#x2F;reference&#x2F;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActivityResultApi">
+<meta property="og:url" content="http://example.com/2022/04/13/activity-result-api/index.html">
+<meta property="og:site_name" content="🔨のblog">
+<meta property="og:description" content="替代startActivityForResult的官方解决方案–ActivityResultAPI 当我接触到startActivityForResult的时候，我发现它已经被官方弃用了，我在官方看到这样的一句话 虽然所有API级别的Activity类均提供底层 [startActivityForResult()](https:&#x2F;&#x2F;developer.android.com&#x2F;reference&#x2F;a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_9.webp">
+<meta property="article:published_time" content="2022-04-13T15:09:11.000Z">
+<meta property="article:modified_time" content="2022-04-13T16:09:30.872Z">
+<meta property="article:author" content="🔨">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_9.webp"><link rel="shortcut icon" href="/%F0%9F%94%A8"><link rel="canonical" href="http://example.com/2022/04/13/activity-result-api/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ActivityResultApi',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-14 00:09:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_1.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_9.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">🔨のblog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ActivityResultApi</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-13T15:09:11.000Z" title="发表于 2022-04-13 23:09:11">2022-04-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-13T16:09:30.872Z" title="更新于 2022-04-14 00:09:30">2022-04-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ActivityResultApi"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="替代startActivityForResult的官方解决方案–ActivityResultAPI"><a href="#替代startActivityForResult的官方解决方案–ActivityResultAPI" class="headerlink" title="替代startActivityForResult的官方解决方案–ActivityResultAPI"></a>替代startActivityForResult的官方解决方案–ActivityResultAPI</h1><blockquote>
+<p>当我接触到startActivityForResult的时候，我发现它已经被官方弃用了，我在官方看到这样的一句话</p>
+<p>虽然所有API级别的<code>Activity</code>类均提供底层 [startActivityForResult()](<a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/app/Activity#startActivityForResult">https://developer.android.com/reference/android/app/Activity#startActivityForResult</a>(android.content.Intent, int))和 [<code>onActivityResult()</code>](<a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/app/Activity#onActivityResult">https://developer.android.com/reference/android/app/Activity#onActivityResult</a>(int, int, android.content.Intent)) API，但我们强烈建议您使用 AndroidX <a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/androidx/releases/activity">Activity</a> 和 <a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/androidx/releases/fragment">Fragment</a> 中引入的<code>Activity Result API</code></p>
+<p>这也就说明官方是希望我们使用<code>Activity Result API</code>进行开发的</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000037601888">https://segmentfault.com/a/1190000037601888</a></p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://developer.android.com/training/basics/intents/result">https://developer.android.com/training/basics/intents/result</a></p>
+</blockquote>
+<h2 id="针对actibity注册回调"><a href="#针对actibity注册回调" class="headerlink" title="针对actibity注册回调"></a>针对actibity注册回调</h2><p>位于 <a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/activity/ComponentActivity"><code>ComponentActivity</code></a> 或 <a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/fragment/app/Fragment"><code>Fragment</code></a> 中时，Activity Result API 会提供 [<code>registerForActivityResult()</code>](<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/activity/result/ActivityResultCaller#registerForActivityResult">https://developer.android.com/reference/androidx/activity/result/ActivityResultCaller#registerForActivityResult</a>(androidx.activity.result.contract.ActivityResultContract, androidx.activity.result.ActivityResultCallback)) API，用于注册结果回调。<code>registerForActivityResult()</code> 接受 <a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/activity/result/contract/ActivityResultContract"><code>ActivityResultContract</code></a> 和 <a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/activity/result/ActivityResultCallback"><code>ActivityResultCallback</code></a> 作为参数，并返回 <a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/activity/result/ActivityResultLauncher"><code>ActivityResultLauncher</code></a>，供您用来启动另一个 activity。</p>
+<p><code>ActivityResultContract</code> 定义生成结果所需的输入类型以及结果的输出类型。这些 API 可为拍照和请求权限等基本 intent 操作提供<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/activity/result/contract/ActivityResultContracts">默认协定</a>。您还可以<a target="_blank" rel="noopener" href="https://developer.android.com/training/basics/intents/result#custom">创建自己的自定义协定</a>。</p>
+<p><code>ActivityResultCallback</code> 是单一方法接口，带有 <a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/activity/result/ActivityResultCallback#onActivityResult(O)"><code>onActivityResult()</code></a> 方法，可接受 <code>ActivityResultContract</code> 中定义的输出类型的对象：</p>
+<blockquote>
+<p>可能一些人觉得这是官网照搬下来的，没有什么意义，可是事实上我只理解这三段话，我觉得够用了，不过以后还会继续深入。那么就让我现在来给讲一下这三段话的意思</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个启动者ActivityResultLauncher是必要的</span></span><br><span class="line">   <span class="keyword">private</span> ActivityResultLauncher activityResultLauncher = </span><br><span class="line">       <span class="comment">//给ActivityResultLauncher进行注册，此时registerForActivityResult会接受两个参数ActivityResultContract和ctivityResultCallback,代码中的IO为当前活动传入的数据类型和第二活动传出的输出数据类型</span></span><br><span class="line">     registerForActivityResult(<span class="keyword">new</span> ActivityResultContract&lt;I, O&gt;() &#123;</span><br><span class="line">       <span class="meta">@NonNull</span></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> Intent <span class="title">createIntent</span><span class="params">(<span class="meta">@NonNull</span> Context context, I input)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//在这个方法中，去创建intent以启动第二活动，当然也可以.putExtra(&quot;key&quot;, input)，这里给了input参数，即需要传入的数据,input可以在调用activityResultLauncher.lsunch()时给input赋值</span></span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, Activity2.class);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> O <span class="title">parseResult</span><span class="params">(<span class="keyword">int</span> resultCode, <span class="meta">@Nullable</span> Intent intent)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//在这个方法中，它会帮你得到传回的intent，然后可以使用它去解析数据</span></span><br><span class="line">           O s = intent.getStringExtra(<span class="string">&quot;address&quot;</span>);</span><br><span class="line">           <span class="keyword">if</span> (resultCode == Activity.RESULT_OK &amp;&amp; s != <span class="keyword">null</span>)</span><br><span class="line">               <span class="keyword">return</span> s;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;, <span class="keyword">new</span> ActivityResultCallback&lt;O&gt;() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(O result)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//这个方法是当第二活动销毁时，数据回调了，需要做什么动作，这里的result由系统自动调用parseResult方法得到</span></span><br><span class="line">           editText.setText(result);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>好，那怎么真正的去使用它呢，只需要在主活动方法中使用<code>activityResultLauncher.launch(null);</code>如果不进行传入数据，则为null</p>
+<p>那么如果需要传入数据，怎么在第二活动得到这个数据呢，<code>getIntent().getStringExtra(&quot;key&quot;);</code>去得到传入的数据</p>
+<p>如果需要传回数据，则可以<code>getIntent().putExtra(&quot;key&quot;, &quot;value&quot;);</code>此时需要设置返回代码以及intent，<code>setResult(Activity.RESULT_OK, getIntent());</code></p>
+<p>至此就可以简单的使用Activity Result API了，当然他不局限于在内部活动传递字符串等数据，就行官网所说</p>
+<p>您的应用可启动相机应用并接收拍摄的照片作为结果。或者，您可以启动“通讯录”应用以便用户选择联系人，并且您将接收联系人详细信息作为结果。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">🔨</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/13/activity-result-api/">http://example.com/2022/04/13/activity-result-api/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">🔨のblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/wechat.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/alipay.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/04/12/android-expand-list/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_14.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ExpandableList解决方案</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_1.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">🔨</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/geekHe-P"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/geekHe-P" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:980987346@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">qq：980987346邮箱：98098736@qq.com</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%BF%E4%BB%A3startActivityForResult%E7%9A%84%E5%AE%98%E6%96%B9%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%93ActivityResultAPI"><span class="toc-number">1.</span> <span class="toc-text">替代startActivityForResult的官方解决方案–ActivityResultAPI</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%92%88%E5%AF%B9actibity%E6%B3%A8%E5%86%8C%E5%9B%9E%E8%B0%83"><span class="toc-number">1.1.</span> <span class="toc-text">针对actibity注册回调</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/13/activity-result-api/" title="ActivityResultApi"><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_9.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ActivityResultApi"/></a><div class="content"><a class="title" href="/2022/04/13/activity-result-api/" title="ActivityResultApi">ActivityResultApi</a><time datetime="2022-04-13T15:09:11.000Z" title="发表于 2022-04-13 23:09:11">2022-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/12/android-expand-list/" title="ExpandableList解决方案"><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_14.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ExpandableList解决方案"/></a><div class="content"><a class="title" href="/2022/04/12/android-expand-list/" title="ExpandableList解决方案">ExpandableList解决方案</a><time datetime="2022-04-12T05:14:49.000Z" title="发表于 2022-04-12 13:14:49">2022-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/07/centos-learn-1/" title="centos学习日记_1"><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_15.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="centos学习日记_1"/></a><div class="content"><a class="title" href="/2022/04/07/centos-learn-1/" title="centos学习日记_1">centos学习日记_1</a><time datetime="2022-04-07T06:24:27.000Z" title="发表于 2022-04-07 14:24:27">2022-04-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/02/Multi-terminal-deployment/" title="基于git的hexo多端部署-GitHub-服务器"><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/2022.3.8_7.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于git的hexo多端部署-GitHub-服务器"/></a><div class="content"><a class="title" href="/2022/04/02/Multi-terminal-deployment/" title="基于git的hexo多端部署-GitHub-服务器">基于git的hexo多端部署-GitHub-服务器</a><time datetime="2022-04-01T17:01:49.000Z" title="发表于 2022-04-02 01:01:49">2022-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/28/parallel_proxy/" title="parallel为虚拟机设置代理 ubuntu"><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/IMG_1219_format.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="parallel为虚拟机设置代理 ubuntu"/></a><div class="content"><a class="title" href="/2021/12/28/parallel_proxy/" title="parallel为虚拟机设置代理 ubuntu">parallel为虚拟机设置代理 ubuntu</a><time datetime="2021-12-28T03:25:33.000Z" title="发表于 2021-12-28 11:25:33">2021-12-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 🔨</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'c4540924dc8fabbe8562',
+      clientSecret: '2dbaa5061f73b83293b1999f52b5349cb7351a07',
+      repo: 'comment',
+      owner: 'geekHe-P',
+      admin: ['geekHe-P'],
+      id: '34c50f05d4d34279d89db454f8824285',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
