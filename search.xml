@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title>在本地服务器做动态域名解析DDNS</title>
+      <link href="/2022/04/15/ddns/"/>
+      <url>/2022/04/15/ddns/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>参考：<a href="https://github.com/NewFuture/DDNS">https://github.com/NewFuture/DDNS</a></p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> ddns </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用matplotlib plt时出现的问题</title>
+      <link href="/2022/04/15/matplotlib-plt-issue/"/>
+      <url>/2022/04/15/matplotlib-plt-issue/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="在使用matplotlib-plt时出现的问题"><a href="#在使用matplotlib-plt时出现的问题" class="headerlink" title="在使用matplotlib plt时出现的问题"></a>在使用matplotlib plt时出现的问题</h1><blockquote><p>参考：<a href="https://blog.csdn.net/dafu_dafu/article/details/119239639">https://blog.csdn.net/dafu_dafu/article/details/119239639</a></p><p>​            <a href="https://www.csdn.net/tags/NtjaUg5sMzQyODYtYmxvZwO0O0OO0O0O.html">https://www.csdn.net/tags/NtjaUg5sMzQyODYtYmxvZwO0O0OO0O0O.html</a></p></blockquote><h2 id="颜色显示诡异"><a href="#颜色显示诡异" class="headerlink" title="颜色显示诡异"></a>颜色显示诡异</h2><p><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/202204151728960.png"></p><p>键入以下代码即可解决</p><p><code>img2 = cv.cvtColor(img, cv.COLOR_BGR2RGB)</code></p><p>![image-20220415172924855](/Users/heboxuan/Library/Application Support/typora-user-images/image-20220415172924855.png)</p><h2 id="中文不显示（mac解决办法，win可能也适用）"><a href="#中文不显示（mac解决办法，win可能也适用）" class="headerlink" title="中文不显示（mac解决办法，win可能也适用）"></a>中文不显示（mac解决办法，win可能也适用）</h2><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><ul><li><p>Python常用中文字体</p><table><thead><tr><th>名称</th><th>字体</th></tr></thead><tbody><tr><td>黑体</td><td>SimHei</td></tr><tr><td>微软雅黑</td><td>Microsoft YaHei</td></tr><tr><td>微软正黑体</td><td>Microsoft JhengHei</td></tr></tbody></table></li><li><p>使用python查看字体所在位置matplotlib</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> font_manager</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> font <span class="keyword">in</span> font_manager.fontManager.ttflist:</span><br><span class="line">    <span class="comment"># 查看字体名以及对应的字体文件名</span></span><br><span class="line">    <span class="built_in">print</span>(font.name, <span class="string">&#x27;-&#x27;</span>, font.fname)</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/202204151735926.png"></p><blockquote><p>这个matplotlib下的ttf文件夹就是字体所在文件夹</p></blockquote></li><li><p>下载字体<code>Simhei.ttf</code></p><p>自行百度下载，将<code>Simhei.ttf</code>放到上述ttf文件夹下</p></li></ul><h4 id="修改matplotlibrc"><a href="#修改matplotlibrc" class="headerlink" title="修改matplotlibrc"></a>修改<code>matplotlibrc</code></h4><p>matplotlibrc在matplotlib/mpl-data目录下，对matplotlibrc文件进行修改</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">249</span>行左右，去掉注释</span><br><span class="line">font.family:  sans-serif     </span><br><span class="line"></span><br><span class="line"># <span class="number">257</span>行左右，同样去掉注释，并添加Simhei字体,根据自己实际字体进行添加</span><br><span class="line">font.sans-serif: Simhei, DejaVu Sans, Bitstream Vera Sans, Computer Modern Sans Serif, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif       </span><br><span class="line"></span><br><span class="line"># <span class="number">400</span>行左右，去掉注释，并修改值为False</span><br><span class="line">axes.unicode_minus: False  # use Unicode for the minus symbol rather than hyphen.  See</span><br><span class="line">                           # https:<span class="comment">//en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes   </span></span><br></pre></td></tr></table></figure><h4 id="删除缓存"><a href="#删除缓存" class="headerlink" title="删除缓存"></a>删除缓存</h4><p>使用python查看缓存路径，删除缓存文件，重启编辑器，即可解决</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="built_in">print</span>(matplotlib.get_cachedir())</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/202204151744647.png"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> matplotlib </tag>
+            
+            <tag> python </tag>
+            
+            <tag> plr </tag>
+            
+            <tag> 图像处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ActivityResultApi</title>
       <link href="/2022/04/13/activity-result-api/"/>
       <url>/2022/04/13/activity-result-api/</url>
