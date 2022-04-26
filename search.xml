@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>废旧电脑搭建Fedora服务器</title>
+      <link href="/2022/04/26/server-centos/"/>
+      <url>/2022/04/26/server-centos/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="废旧电脑基于Fedora，ipv6ddns的服务器搭建过程"><a href="#废旧电脑基于Fedora，ipv6ddns的服务器搭建过程" class="headerlink" title="废旧电脑基于Fedora，ipv6ddns的服务器搭建过程"></a>废旧电脑基于Fedora，ipv6ddns的服务器搭建过程</h1><blockquote><p>因为家里有个废弃电脑，还想到现在人手公网IPv6，外加每年购买服务器的费用，我打算自己搭建个本地物理服务器</p><p>参考：<a href="https://www.dandelioncloud.cn/article/details/1496903761879732226">永不休眠</a></p><p>​          <a href="https://www.cnblogs.com/larry-luo/p/14276014.html">查看硬盘分区</a></p><p>​          <a href="https://blog.csdn.net/weixin_41489136/article/details/123299344">磁盘扩展</a></p></blockquote><h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><ul><li>系统盘的制作，去官网下载系统，将<code>iso</code>文件写入u盘，这里推荐工具<code>balenaEtcher</code></li><li>开机根据自己电脑的型号进入启动项选择界面，笔者这边是<code>f12</code>，选择u盘启动，进行安装</li><li>跟着系统流程进行安装，设置root账号，勾选允许ssh登陆</li></ul><h2 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h2><ul><li><p>作为服务器，需要设置物理机永不休眠</p><p>配置logind.conf ，一般在<code>/etc/systemd/</code>目录下，找到<code>HandleLidSwitch</code>，去掉注释并修改为<code>HandleLidSwitch=lock</code></p><p>运行<code>systemctl restart systemd-logind</code>重载配置文件</p></li><li><p>磁盘扩展卷</p><p>使用命令<code>df-h</code>查看卷名</p><p><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/202204262034854.png"></p><p>可以看到根目录所在卷，使用命令<code>lvextend -l +100%free /dev/mapper/fedora_locahost-root</code>扩展卷到最大，</p><p>最后执行<code>xfs_growfs /dev/mapper/fedora_locahost-root</code>完成扩展</p></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> server </tag>
+            
+            <tag> fedora </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Raspberry Pi OS系统更新导致默认用户pi无法登陆</title>
       <link href="/2022/04/18/raspberry-user-pi/"/>
       <url>/2022/04/18/raspberry-user-pi/</url>
