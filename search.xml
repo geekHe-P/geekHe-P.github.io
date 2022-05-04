@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>关于Android Studio 遇到的配置错误</title>
+      <link href="/2022/05/04/ansroid-error/"/>
+      <url>/2022/05/04/ansroid-error/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="关于Android-Studio-遇到的配置错误"><a href="#关于Android-Studio-遇到的配置错误" class="headerlink" title="关于Android Studio 遇到的配置错误"></a>关于Android Studio 遇到的配置错误</h1><blockquote><p>配置AS过程中难免遇到奇奇怪怪的问题，在这里整理成册</p><p>参看：<a href="https://blog.csdn.net/qq_15345551/article/details/118726611">https://blog.csdn.net/qq_15345551/article/details/118726611</a></p><p>​          <a href="https://blog.csdn.net/fjnu_se/article/details/112064299">https://blog.csdn.net/fjnu_se/article/details/112064299</a></p></blockquote><h1 id="插件禁用导致的Android-studio无法打开"><a href="#插件禁用导致的Android-studio无法打开" class="headerlink" title="插件禁用导致的Android studio无法打开"></a>插件禁用导致的Android studio无法打开</h1><p><img src="https://cdn.jsdelivr.net/gh/geekHe-P/PicGo@master/article/202205042221229.png"></p><p>解决办法：</p><p>打开Android studio的路径下的<code>disabled_plugins.txt</code>文件，系统不同路径不同，百度即可</p><p>删除<code>disabled_plugins.txt</code>文件，重启Android Studio</p><h1 id="Gradle无法识别插件问题"><a href="#Gradle无法识别插件问题" class="headerlink" title="# Gradle无法识别插件问题"></a># Gradle无法识别插件问题</h1><p>解决办法：</p><p>找到<code>.gradle</code>目录下<code>gradle.properties</code>文件，注释掉代理选项</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> android </tag>
+            
+            <tag> Android Studio </tag>
+            
+            <tag> error </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>废旧电脑搭建Fedora服务器</title>
       <link href="/2022/04/26/server-centos/"/>
       <url>/2022/04/26/server-centos/</url>
@@ -128,7 +151,7 @@
       <link href="/2022/04/07/centos-learn-1/"/>
       <url>/2022/04/07/centos-learn-1/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="centos命令行学习日记1"><a href="#centos命令行学习日记1" class="headerlink" title="centos命令行学习日记1"></a>centos命令行学习日记1</h1><table><thead><tr><th>lsblk</th><th>查看分区和硬盘</th></tr></thead><tbody><tr><td>df -h</td><td>查看空间使用情况</td></tr><tr><td>su</td><td>切换用户</td></tr><tr><td>systemctl status</td><td>状态查询命令</td></tr><tr><td>firewall-cmd --zone=public --list-ports</td><td>防火墙开放端口查询</td></tr><tr><td>firewall-cmd --zone=public --remove-port=5672/tcp --permanent</td><td>防火墙关闭端口</td></tr><tr><td>firewall-cmd --zone=public --add-port=5900-5905/tcp --permanent</td><td>防火墙打开端口</td></tr><tr><td>firewall-cmd --reload</td><td>防火墙配置生效</td></tr><tr><td>lsof -i:端口号</td><td>查看端口</td></tr><tr><td>kill -9 PID</td><td>关闭进程</td></tr><tr><td>find / -name 文件名</td><td>全盘查找文件</td></tr><tr><td>ip add</td><td>查看网口及其ip地址</td></tr><tr><td>yum search 名字</td><td>查看软件库软件</td></tr><tr><td>mv 旧文件名 新文件名</td><td>重命名</td></tr><tr><td>chmod</td><td>提权</td></tr></tbody></table>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="centos命令行学习日记1"><a href="#centos命令行学习日记1" class="headerlink" title="centos命令行学习日记1"></a>centos命令行学习日记1</h1><table><thead><tr><th>lsblk</th><th>查看分区和硬盘</th></tr></thead><tbody><tr><td>df -h</td><td>查看空间使用情况</td></tr><tr><td>su</td><td>切换用户</td></tr><tr><td>systemctl status</td><td>状态查询命令</td></tr><tr><td>firewall-cmd --zone=public --list-ports</td><td>防火墙开放端口查询</td></tr><tr><td>firewall-cmd --zone=public --remove-port=5672/tcp --permanent</td><td>防火墙关闭端口</td></tr><tr><td>firewall-cmd --zone=public --add-port=5900-5905/tcp --permanent</td><td>防火墙打开端口</td></tr><tr><td>firewall-cmd --reload</td><td>防火墙配置生效</td></tr><tr><td>lsof -i:端口号</td><td>查看端口</td></tr><tr><td>kill -9 PID</td><td>关闭进程</td></tr><tr><td>find / -name 文件名</td><td>全盘查找文件</td></tr><tr><td>ip add</td><td>查看网口及其ip地址</td></tr><tr><td>yum search 名字</td><td>查看软件库软件</td></tr><tr><td>mv 旧文件名 新文件名</td><td>重命名</td></tr><tr><td>chmod</td><td>提权</td></tr><tr><td>systemctl enable &lt;服务名&gt;</td><td>设置开机自启</td></tr><tr><td>systemctl disable &lt;服务名&gt;</td><td>禁止开机自启</td></tr><tr><td>systemctl list-unit-files</td><td>查看所有服务状态</td></tr><tr><td>systemctl list-unit-files |</td><td>查看服务自启状态</td></tr><tr><td>| grep &lt;服务名&gt;</td><td>过滤器</td></tr></tbody></table>]]></content>
       
       
       
